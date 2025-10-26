@@ -20,7 +20,7 @@ ar[i]=ar[i+1];
 n=n-1;
 ar = (int*) realloc(ar, n* sizeof(int));
 for(i=0;i<n;i++){
-printf("%d\t",ar[i]);
+printf("%d\n",ar[i]);
 }
 free(ar);
 return(0);
