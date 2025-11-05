@@ -41,6 +41,7 @@ void display(struct Node* head) {
         printf("%d ", p->data);
         p = p->next;
     }
+    printf("\n");
 }
 int main(){
     int l=1, data,ch;

@@ -144,7 +144,7 @@ cout << "8.Deletion at end"<<endl;
 cout << "9.Display" << endl;
 cout << "Press 0 for termination"<<endl;
 cin >> choice;
-switch (choice)
+switch (choice) 
 {
 case 1:
 
