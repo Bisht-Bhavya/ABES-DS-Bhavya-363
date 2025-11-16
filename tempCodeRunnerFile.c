@@ -1,62 +1,52 @@
 #include <stdio.h>
-#define N 10
-int arr[N];
-int front = -1;
-int rear = -1; 
-void insert(int n){
-if(front == 0 && rear == N-1){
-printf("Queue is full \n");
-return;
-}
-rear++;
-arr[rear] = n;
-}
+#define N 100
 
-int delete(){
-    if(front == rear){
-        printf("Underflow \n");
-        return 0;
-    }
-    front++;
-    return arr[front];
-}
+int count[N];
+int m[5];
+int b[5];
 
-void display(){
-    if(front == rear){
-        printf("Queue is empty \n");
-        return;
+void sort(void);
+
+int main() {
+    int i;
+    printf("Enter 5 countay elements: ");
+    for (i = 0; i < 5; i++) {
+        scanf("%d", &m[i]);
     }
-    for(int i = front + 1; i <= rear; i++){
-        printf("%d ", arr[i]);
+    sort();
+    printf("Sorted countay:\n");
+    for (i = 0; i < 5; i++) {
+        printf("%d ", b[i]);
     }
     printf("\n");
+
+    return 0;
 }
 
-int main(){
-int n;
-int i = 1;
-while(i != 0){
-printf("Enter your choice: \n");
-printf("1.Insertion\n");
-printf("2.Deletion\n");
-printf("3.Display\n");
-scanf("%d", &n);
-switch(n){
-case 1:
-printf("Enter the element to insert: \n");
-scanf("%d", &n);
-insert(n);
-break;
-case 2:
-printf("Deleted element: %d\n", delete());
-break;
-case 3:
-display();
-break;
-default:
-printf("Invalid choice \n");
-}
-printf("press 0 to terminate: ");
-scanf("%d", &i);
-}
+void sort() {
+    int max = m[0];
+    int i;
+
+    for (i = 1; i < 5; i++) {
+        if (m[i] > max) {
+            max = m[i];
+        }
+    }
+
+    for (i = 0; i <= max; i++) {
+        count[i] = 0;
+    }
+
+    for (i = 0; i < 5; i++) {
+        count[m[i]]++;
+    }
+
+    for (i = 1; i <= max; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (i = 4; i >= 0; i--) {
+        b[ count[m [ i ] ] - 1] = m [ i ];
+        count[ m [ i ] ]--;
+    }
 }

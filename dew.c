@@ -1,16 +1,17 @@
 #include <stdio.h>
-#define N 10 
+#define N 10  // Maximum size of the deque
 
 int arr[N];
 int front = -1;
 int rear = -1;
 
+// Insert element at rear
 void insert_rear(int n) {
     if ((rear + 1) % N == front) {
         printf("Queue is full\n");
         return;
     }
-    if (front == -1) {  
+    if (front == -1) {  // First element
         front = 0;
         rear = 0;
     } else {
@@ -20,12 +21,13 @@ void insert_rear(int n) {
     printf("Inserted %d at rear.\n", n);
 }
 
+// Insert element at front
 void insert_front(int n) {
     if ((front - 1 + N) % N == rear) {
         printf("Queue is full\n");
         return;
     }
-    if (front == -1) { 
+    if (front == -1) {  // First element
         front = 0;
         rear = 0;
     } else {
@@ -35,13 +37,14 @@ void insert_front(int n) {
     printf("Inserted %d at front.\n", n);
 }
 
+// Delete element from front
 int delete_front() {
     if (front == -1) {
         printf("Queue is empty\n");
         return -1;
     }
     int val = arr[front];
-    if (front == rear) {  
+    if (front == rear) {  // Only one element
         front = -1;
         rear = -1;
     } else {
@@ -50,13 +53,14 @@ int delete_front() {
     return val;
 }
 
+// Delete element from rear
 int delete_rear() {
     if (front == -1) {
         printf("Queue is empty\n");
         return -1;
     }
     int val = arr[rear];
-    if (front == rear) { 
+    if (front == rear) {  // Only one element
         front = -1;
         rear = -1;
     } else {
@@ -65,6 +69,7 @@ int delete_rear() {
     return val;
 }
 
+// Display all elements
 void display() {
     if (front == -1) {
         printf("Queue is empty\n");
@@ -81,17 +86,24 @@ void display() {
     printf("\n");
 }
 
+// Default insert for legacy compatibility
+void insert(int n) {
+    insert_rear(n);
+}
+
 int main() {
     int choice, n;
     int running = 1;
 
     while (running) {
+        printf("\n========== DEQUE MENU ==========\n");
         printf("1. Insert at Front\n");
         printf("2. Insert at Rear\n");
         printf("3. Delete from Front\n");
         printf("4. Delete from Rear\n");
         printf("5. Display\n");
         printf("0. Exit\n");
+        printf("================================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
